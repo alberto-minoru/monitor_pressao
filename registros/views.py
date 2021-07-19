@@ -8,6 +8,7 @@ from .models import Pressao
 class PressaoListView(LoginRequiredMixin, ListView):
     model = Pressao
     template_name = 'registros/registros_list.html'
+    ordering = ['-data']
 
 
 class PressaoDetailView(LoginRequiredMixin, DetailView):
