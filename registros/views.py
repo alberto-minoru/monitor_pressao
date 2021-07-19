@@ -17,7 +17,11 @@ class PressaoDetailView(DetailView):
 class PressaoCreateView(CreateView):
     model = Pressao
     template_name = 'registros/registro_new.html'
-    fields = ['pessoa', 'sis', 'dia', 'pul']
+    fields = ['sis', 'dia', 'pul']
+
+    def form_valid(self, form):
+        form.instance.pessoa = self.request.user
+        return super().form_valid(form)
 
 
 class PressaoUpdateView(UpdateView):
