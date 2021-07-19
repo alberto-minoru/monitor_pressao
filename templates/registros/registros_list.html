@@ -3,6 +3,12 @@
 {% block title %}Registros{% endblock title %}
 
 {% block content %}
+    {% if user.is_authenticated %}
+        <p>Olá {{ user.username }}</p>
+        <p><a href="{% url 'logout' %}">Log out</a></p>
+    {% else %}
+        <p>Você não está logado. Clique <a href="{% url 'login' %}">aqui</a> para logar</p>
+    {% endif %}
     {% for pressao in pressao_list %}
         <div>
             <h2><a href="{{ pressao.get_absolute_url }}">{{ pressao.data|date:"d/m/Y H:i" }}</a></h2>
