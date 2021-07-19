@@ -1,20 +1,21 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Pressao
 
 
-class PressaoListView(ListView):
+class PressaoListView(LoginRequiredMixin, ListView):
     model = Pressao
     template_name = 'registros/registros_list.html'
 
 
-class PressaoDetailView(DetailView):
+class PressaoDetailView(LoginRequiredMixin, DetailView):
     model = Pressao
     template_name = 'registros/registro_detail.html'
 
 
-class PressaoCreateView(CreateView):
+class PressaoCreateView(LoginRequiredMixin, CreateView):
     model = Pressao
     template_name = 'registros/registro_new.html'
     fields = ['sis', 'dia', 'pul']
@@ -24,13 +25,21 @@ class PressaoCreateView(CreateView):
         return super().form_valid(form)
 
 
-class PressaoUpdateView(UpdateView):
+class PressaoUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Pressao
     template_name = 'registros/registro_edit.html'
     fields = ['sis', 'dia', 'pul']
 
+    def test_func(self):
+        obj = self.get_object()
+        return obj.pessoa == self.request.user
 
-class PressaoDeleteView(DeleteView):
+
+class PressaoDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Pressao
     template_name = 'registros/registro_delete.html'
     success_url = reverse_lazy('registros_list')
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.pessoa == self.request.user
