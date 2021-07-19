@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Registros{% endblock title %}
+
+{% block content %}
+    {% for pressao in pressao_list %}
+        <div>
+            <h2><a href="{{ pressao.get_absolute_url }}">{{ pressao.data|date:"d/m/Y H:i" }}</a></h2>
+            <p>{{ pressao.pessoa }}</p>
+            <p>{{ pressao.sis }}</p>
+            <p>{{ pressao.dia }}</p>
+            <p>{{ pressao.pul }}</p>
+        </div>
+    {% endfor %}
+{% endblock content %}

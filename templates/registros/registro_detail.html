@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ pressao.data|date:"d/m/Y H:i" }}{% endblock title %}
+
+{% block content %}
+    <div class="registro-detail">
+        <h2><a href="">{{ pressao.data|date:"d/m/Y H:i" }}</a></h2>
+            <p>Sistólica: {{ pressao.sis }}</p>
+            <p>Diastólica: {{ pressao.dia }}</p>
+            <p>Pulso: {{ pressao.pul }}</p>
+    </div>
+{% endblock content %}
