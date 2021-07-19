@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Deletar Registro{% endblock title %}
+
+{% block content %}
+    <h1>Deletar Registro</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Você tem certeza que deseja deletar este registro?</p>
+        <p>{{ pressao.data }}</p>
+        {{ form.as_p }}
+        <input type="submit" value="Deletar">
+    </form>
+{% endblock content %}

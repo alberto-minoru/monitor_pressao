@@ -9,4 +9,8 @@
             <p>Diastólica: {{ pressao.dia }}</p>
             <p>Pulso: {{ pressao.pul }}</p>
     </div>
+
+    <a href="{% url 'registro_edit' pressao.id %}">Editar Registro</a>
+    <br>
+    <a href="{% url 'registro_delete' pressao.id %}">Deletar Registro</a>
 {% endblock content %}
