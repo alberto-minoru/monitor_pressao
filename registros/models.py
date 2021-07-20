@@ -6,7 +6,7 @@ from django.urls import reverse
 
 class Pressao(models.Model):
     pessoa = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,)
-    data = models.DateTimeField(auto_now_add=True)
+    data = models.DateTimeField()
     sis = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(200)])
     dia = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(120)])
     pul = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(150)])

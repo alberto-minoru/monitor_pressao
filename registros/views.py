@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -26,6 +27,7 @@ class PressaoCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.pessoa = self.request.user
+        form.instance.data = datetime.now()
         return super().form_valid(form)
 
 
