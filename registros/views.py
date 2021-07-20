@@ -8,7 +8,9 @@ from .models import Pressao
 class PressaoListView(LoginRequiredMixin, ListView):
     model = Pressao
     template_name = 'registros/registros_list.html'
-    ordering = ['-data']
+
+    def get_queryset(self):
+        return self.model.objects.filter(pessoa=self.request.user).order_by('-data')
 
 
 class PressaoDetailView(LoginRequiredMixin, DetailView):
