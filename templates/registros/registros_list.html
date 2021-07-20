@@ -9,13 +9,66 @@
     {% else %}
         <p>Você não está logado. Clique <a href="{% url 'login' %}">aqui</a> para logar</p>
     {% endif %}
-    {% for pressao in pressao_list %}
-        <div>
-            <h2><a href="{{ pressao.get_absolute_url }}">{{ pressao.data|date:"d/m/Y H:i" }}</a></h2>
-            <p>{{ pressao.pessoa }}</p>
-            <p>{{ pressao.sis }}</p>
-            <p>{{ pressao.dia }}</p>
-            <p>{{ pressao.pul }}</p>
-        </div>
-    {% endfor %}
+    <style>
+        #registros {
+          font-family: Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 80%;
+        }
+
+        #registros td, #registros th {
+          border: 1px solid #ddd;
+          padding: 8px;
+          text-align: center;
+          vertical-align: middle;
+        }
+
+        #registros tr:nth-child(even){background-color: #f2f2f2;}
+
+        #registros tr:hover {background-color: #ddd;}
+
+        #registros th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          background-color: #3333cc;
+          color: white;
+        }
+    </style>
+    <table id="registros">
+        <tr>
+            <th>ID</th>
+            <th>Data</th>
+            <th>Sistólica</th>
+            <th>Diastólica</th>
+            <th>Pulso</th>
+        </tr>
+        {% for pressao in pressao_list %}
+            <tr>
+                <td><a href="{{ pressao.get_absolute_url }}">{{ pressao.pk }}</a></td>
+                <td>{{ pressao.data|date:"d/m/Y - H:i" }}</td>
+                <td>{{ pressao.sis }}</td>
+                <td>{{ pressao.dia }}</td>
+                <td>{{ pressao.pul }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <div>
+        <span>
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; primeiro</a>
+                <a href="?page={{ page_obj.previous_page_number }}">anterior</a>
+            {% endif %}
+
+            <span class="current">
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">próximo</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">ultimo &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
 {% endblock content %}
