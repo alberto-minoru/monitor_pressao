@@ -34,7 +34,7 @@ class PressaoCreateView(LoginRequiredMixin, CreateView):
 class PressaoUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Pressao
     template_name = 'registros/registro_edit.html'
-    fields = ['sis', 'dia', 'pul']
+    fields = ['sis', 'dia', 'pul', 'data']
 
     def test_func(self):
         obj = self.get_object()

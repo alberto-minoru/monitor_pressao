@@ -1,16 +1,40 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ pressao.data|date:"d/m/Y H:i" }}{% endblock title %}
+{% block title %}Detalhes{% endblock title %}
 
 {% block content %}
-    <div class="registro-detail">
-        <h2><a href="">{{ pressao.data|date:"d/m/Y H:i" }}</a></h2>
-            <p>Sistólica: {{ pressao.sis }}</p>
-            <p>Diastólica: {{ pressao.dia }}</p>
-            <p>Pulso: {{ pressao.pul }}</p>
+
+    <br>
+    <div class="card">
+        <div class="card-header text-center">
+            <h3 class="font-weight-bold">{{ pressao.data|date:"d/m/Y - H:i" }}</h3>
+        </div>
+        <div class="card-body text-center">
+            <table class="table table-borderless" style="font-size: 2em;">
+                <tbody>
+                    <tr>
+                        <td>Sistólica:</td>
+                        <td>{{ pressao.sis }}</td>
+                    </tr>
+                    <tr>
+                        <td>Diastólica:</td>
+                        <td>{{ pressao.dia }}</td>
+                    </tr>
+                    <tr>
+                        <td>Pulso:</td>
+                        {% if pressao.pul %}
+                            <td>{{ pressao.pul }}</td>
+                        {% else %}
+                            <td> </td>
+                        {% endif %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer text-center text-muted">
+            <a href="{% url 'registro_edit' pressao.id %}" class="btn btn-primary">Editar</a>
+            <a href="{% url 'registro_delete' pressao.id %}" class="btn btn-danger">Deletar</a>
+        </div>
     </div>
 
-    <a href="{% url 'registro_edit' pressao.id %}">Editar Registro</a>
-    <br>
-    <a href="{% url 'registro_delete' pressao.id %}">Deletar Registro</a>
 {% endblock content %}

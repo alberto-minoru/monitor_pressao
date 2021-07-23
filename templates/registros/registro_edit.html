@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
-{% block title %}Editar Registro{% endblock title %}
+{% block title %}Editar{% endblock title %}
 
 {% block content %}
     <h1>Editar Registro</h1>
     <form action="" method="post">
         {% csrf_token %}
         {{ form|crispy }}
-        <input type="submit" value="Atualizar">
+        <input type="submit" value="Atualizar" class="btn btn-primary">
+        <a href="{{ pressao.get_absolute_url }}" class="btn btn-secondary">Cancelar</a>
     </form>
 {% endblock content %}
