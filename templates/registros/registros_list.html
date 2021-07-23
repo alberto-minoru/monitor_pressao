@@ -21,7 +21,11 @@
                     <td>{{ pressao.data|date:"d/m/y H:i" }}</td>
                     <td>{{ pressao.sis }}</td>
                     <td>{{ pressao.dia }}</td>
-                    <td>{{ pressao.pul }}</td>
+                    {% if pressao.pul %}
+                        <td>{{ pressao.pul }}</td>
+                    {% else %}
+                        <td> - </td>
+                    {% endif %}
                 </tr>
             {% endfor %}
         </tbody>
