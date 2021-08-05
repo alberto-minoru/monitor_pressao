@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Detalhes{% endblock title %}
+{% block title %}Detalhes do Registro{% endblock title %}
 
 {% block content %}
 
@@ -22,11 +22,11 @@
                     </tr>
                     <tr>
                         <td>Pulso:</td>
-                        {% if pressao.pul %}
-                            <td>{{ pressao.pul }}</td>
-                        {% else %}
-                            <td> </td>
-                        {% endif %}
+                        <td>
+                            {% if pressao.pul %}
+                                {{ pressao.pul }}
+                            {% endif %}
+                        </td>
                     </tr>
                 </tbody>
             </table>

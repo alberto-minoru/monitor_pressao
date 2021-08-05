@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Deletar{% endblock title %}
+{% block title %}Deletar Registro{% endblock title %}
 
 {% block content %}
     <h1>Deletar Registro</h1>
@@ -9,7 +9,7 @@
         <p>Você tem certeza que deseja deletar o registro deste dia?</p>
         <p>{{ pressao.data }}</p>
         {{ form.as_p }}
-        <a href="{{ pressao.get_absolute_url }}" class="btn btn-primary">Cancelar</a>
-        <input type="submit" value="Deletar" class="btn btn-danger">
+        <input type="submit" value="Sim" class="btn btn-danger">
+        <a href="{{ pressao.get_absolute_url }}" class="btn btn-primary">Não</a>
     </form>
 {% endblock content %}

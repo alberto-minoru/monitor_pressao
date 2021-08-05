@@ -1,30 +1,32 @@
 {% extends 'base.html' %}
 
-{% block title %}Registros{% endblock title %}
+{% block title %}Todos Registros{% endblock title %}
 
 {% block content %}
     <div class="table-responsive">
 
-        <table class="table table-striped table-hover ">
+        <table class="table table-striped">
             <thead class="thead-dark">
-                <th>ID</th>
-                <th>DATA</th>
-                <th>SIS</th>
-                <th>DIA</th>
-                <th>PUL</th>
+                <tr>
+                    <th>DATA</th>
+                    <th>SIS</th>
+                    <th>DIA</th>
+                    <th>PUL</th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
                 {% for pressao in pressao_list %}
                     <tr>
-                        <td><a href="{{ pressao.get_absolute_url }}">{{ pressao.id }}</a></td>
-                        <td>{{ pressao.data|date:"d/m/y H:i" }}</td>
+                        <td>{{ pressao.data|date:"d/m/y - H:i" }}</td>
                         <td>{{ pressao.sis }}</td>
                         <td>{{ pressao.dia }}</td>
-                        {% if pressao.pul %}
-                            <td>{{ pressao.pul }}</td>
-                        {% else %}
-                            <td> </td>
-                        {% endif %}
+                        <td>
+                            {% if pressao.pul %}
+                                {{ pressao.pul }}
+                            {% endif %}
+                        </td>
+                        <td><a href="{{ pressao.get_absolute_url }}">&#128269;</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -32,7 +34,7 @@
 
     </div>
 
-    <nav aria-label="nagecao-paginacao">
+    <nav class="navbar justify-content-center" aria-label="navegacao-paginacao">
         <ul class="pagination">
 
             {% if page_obj.has_previous %}

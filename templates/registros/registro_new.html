@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
-{% block title %}Novo Registro{% endblock title %}
+{% block title %}Adicionar Registro{% endblock title %}
 
 {% block content %}
-    <h1>Novo Registro</h1>
+    <h1>Adicionar Registro</h1>
     <form action="" method="post">
         {% csrf_token %}
         {{ form|crispy }}
